@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import carListData from "./../models/dummyData";
-const cloudinary = require("cloudinary").v2;
+import cloudinary from "cloudinary";
 
-cloudinary.config({
+cloudinary.v2.config({
   cloud_name: "dqvubnigp",
   api_key: "735277177926233",
   api_secret: "XDMpdQ5Tuz0KRCRWWj0q6Jn3mRs",
@@ -30,31 +30,28 @@ const get = (req: Request, res: Response) => {
 };
 
 const post = (req: Request, res: Response) => {
-  const reqBody = req.body;
+  const reqBody: any = req.body;
   const newId = uuidv4();
-  const newObjCarWithId: CarList = {
-    ...reqBody,
-    id: newId,
-  };
+  if (!req.file) {
+    return res.status(400).json({ message: "No file uploaded" });
+  }
 
-  if (req.file) {
-    const filebase64: string = req.file.buffer.toString("base64");
-    const file: string = `data:${req.file.mimetype};base64,${filebase64}`;
+  const filebase64: string = req.file.buffer.toString("base64");
+  const file: string = `data:${req.file.mimetype};base64,${filebase64}`;
+  cloudinary.v2.uploader.upload(file, (err: any, result: any) => {
+    if (err) {
+      return res.status(400).json({ message: err.message });
+    }
 
-    cloudinary.uploader.upload(file, (err: any, result: any) => {
-      if (err) {
-        return res.status(400).json({ message: err.message });
-      }
+    let newObjCarWithId: CarList = {
+      ...reqBody,
+      id: newId,
+      img_path: result.url,
+    };
 
-      newObjCarWithId.img_path = result.url;
-
-      const newCarList = [...carListData, newObjCarWithId];
-      res.status(201).json(newCarList);
-    });
-  } else {
     const newCarList = [...carListData, newObjCarWithId];
     res.status(201).json(newCarList);
-  }
+  });
 };
 
 const put = (req: Request, res: Response) => {
