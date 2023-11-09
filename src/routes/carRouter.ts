@@ -4,6 +4,8 @@ import * as carController from "./../controllers/carsControllers";
 
 router.get("/", carController.get);
 router.get("/:id", carController.getById);
-router.post("/create", carController.post);
+router.post("/add", carController.post);
+router.put("/:id", carController.put);
+router.delete("/:id", carController.remove);
 
 export default router;
