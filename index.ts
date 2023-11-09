@@ -27,6 +27,8 @@ app.use(handleLogger);
 app.use("/v1/cars", carRouter);
 // app.post("v1/cars/add", carRouter);
 // app.post("/v1/cars/picture", upload.single("picture"), (req: Request, res: Response) => {
+//   const reqBody: any = req.body;
+//   const newId = uuidv4();
 //   if (!req.file) {
 //     return res.status(400).json({ message: "No file uploaded" });
 //   }
@@ -38,6 +40,16 @@ app.use("/v1/cars", carRouter);
 //     if (err) {
 //       return res.status(400).json({ message: err.message });
 //     }
+
+//     let newObjCarWithId: CarList = {
+//       ...reqBody,
+//       id: newId,
+//       img_path: result.url,
+//     };
+
+//     const newCarList = [...carListData, newObjCarWithId];
+//     console.log(newCarList);
+//     res.status(201).json(newCarList);
 
 //     res.status(200).json({ message: "photo successfully uploaded!", url: result.url });
 //   });
