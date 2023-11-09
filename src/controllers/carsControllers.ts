@@ -59,11 +59,23 @@ const put = (req: Request, res: Response) => {
   const updatedCar: CarList = req.body;
   const index = carListData.findIndex((car: CarList) => car.id === Number(carId));
   if (index !== -1) {
-    carListData[index] = {
-      ...updatedCar,
-      id: Number(carId),
-    };
-    return res.status(200).json(carListData[index]);
+    const existingCar = carListData[index];
+    if (req.file) {
+      const filebase64: string = req.file.buffer.toString("base64");
+      const file: string = `data:${req.file.mimetype};base64,${filebase64}`;
+      cloudinary.v2.uploader.upload(file, (err: any, result: any) => {
+        if (err) {
+          return res.status(400).json({ message: err.message });
+        }
+
+        existingCar.img_path = result.url;
+        Object.assign(existingCar, updatedCar);
+        return res.status(200).json(existingCar);
+      });
+    } else {
+      Object.assign(existingCar, updatedCar);
+      return res.status(200).json(existingCar);
+    }
   } else {
     return res.status(404).json({ message: "Car not found" });
   }
