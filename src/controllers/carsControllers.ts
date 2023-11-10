@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import carListData from "./../models/dummyData";
+import { CarsData } from "../models/carsData";
 import cloudinary from "cloudinary";
 
 cloudinary.v2.config({
@@ -20,83 +21,105 @@ interface CarList {
   img_path: string;
 }
 
-const get = (req: Request, res: Response) => {
-  const { brand = "" } = req.query || {};
-  const filteredCars = carListData.filter((car: CarList) => car.brand.toLowerCase() === (brand as string).toLowerCase());
-
-  res.status(200).render("home", {
-    cars: brand ? filteredCars : carListData,
-  });
+const get = async (req: Request, res: Response) => {
+  try {
+    const { brand = "" } = req.query || {};
+    const cars = brand ? await CarsData.query().where("brand", "like", `%${brand}%`) : await CarsData.query();
+    res.status(200).json({ cars });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-const post = (req: Request, res: Response) => {
-  const reqBody: any = req.body;
-  const newId = uuidv4();
-  if (!req.file) {
-    return res.status(400).json({ message: "No file uploaded" });
-  }
+const post = async (req: Request, res: Response) => {
+  try {
+    const reqBody: any = req.body;
 
-  const filebase64: string = req.file.buffer.toString("base64");
-  const file: string = `data:${req.file.mimetype};base64,${filebase64}`;
-  cloudinary.v2.uploader.upload(file, (err: any, result: any) => {
-    if (err) {
-      return res.status(400).json({ message: err.message });
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
     }
 
-    let newObjCarWithId: CarList = {
-      ...reqBody,
-      id: newId,
-      img_path: result.url,
-    };
+    const filebase64: string = req.file.buffer.toString("base64");
+    const file: string = `data:${req.file.mimetype};base64,${filebase64}`;
 
-    const newCarList = [...carListData, newObjCarWithId];
-    res.status(201).json(newCarList);
-  });
+    cloudinary.v2.uploader.upload(file, async (err: any, result: any) => {
+      if (err) {
+        return res.status(400).json({ message: err.message });
+      }
+
+      const newObjCarWithId: CarList = {
+        ...reqBody,
+        img_path: result.url,
+      };
+
+      const newCar = await CarsData.query().insert(newObjCarWithId);
+      res.status(201).json(newCar);
+    });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-const put = (req: Request, res: Response) => {
-  const carId = req.params.id;
-  const updatedCar: CarList = req.body;
-  const index = carListData.findIndex((car: CarList) => car.id === Number(carId));
-  if (index !== -1) {
-    const existingCar = carListData[index];
-    if (req.file) {
-      const filebase64: string = req.file.buffer.toString("base64");
-      const file: string = `data:${req.file.mimetype};base64,${filebase64}`;
-      cloudinary.v2.uploader.upload(file, (err: any, result: any) => {
-        if (err) {
-          return res.status(400).json({ message: err.message });
-        }
+const put = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const reqBody: any = req.body;
 
-        existingCar.img_path = result.url;
-        Object.assign(existingCar, updatedCar);
-        return res.status(200).json(existingCar);
-      });
+    if (!req.file) {
+      const updatedCar = await CarsData.query().patchAndFetchById(id, reqBody);
+      return res.status(200).json(updatedCar);
+    }
+
+    const filebase64: string = req.file.buffer.toString("base64");
+    const file: string = `data:${req.file.mimetype};base64,${filebase64}`;
+
+    cloudinary.v2.uploader.upload(file, async (err: any, result: any) => {
+      if (err) {
+        return res.status(400).json({ message: err.message });
+      }
+
+      const newObjCarWithId: CarList = {
+        ...reqBody,
+        img_path: result.url,
+      };
+
+      const updatedCar = await CarsData.query().patchAndFetchById(id, newObjCarWithId);
+      res.status(200).json(updatedCar);
+    });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const remove = async (req: Request, res: Response) => {
+  try {
+    const carId = req.params.id;
+    const deletedCar = await CarsData.query().deleteById(carId);
+    if (deletedCar) {
+      const cars = await CarsData.query();
+      return res.status(200).json({ message: "Car successfully deleted", cars });
     } else {
-      Object.assign(existingCar, updatedCar);
-      return res.status(200).json(existingCar);
+      return res.status(404).json({ message: "Car not found" });
     }
-  } else {
-    return res.status(404).json({ message: "Car not found" });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
 };
 
-const remove = (req: Request, res: Response) => {
-  const carId = req.params.id;
-  const index = carListData.findIndex((car: CarList) => car.id === Number(carId));
-  if (index !== -1) {
-    carListData.splice(index, 1);
-    return res.status(200).json({ message: "Car successfully deleted", cars: carListData });
-  } else {
-    return res.status(404).json({ message: "Car not found" });
+const getById = async (req: Request, res: Response) => {
+  try {
+    const carId = req.params.id;
+
+    const car = await CarsData.query().findById(carId);
+
+    if (car) {
+      return res.status(200).json(car);
+    } else {
+      return res.status(404).json({ message: "Car not found" });
+    }
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
   }
-};
-
-const getById = (req: Request, res: Response) => {
-  const getId = req.params.id;
-  const filterById = carListData.filter(({ id }: any) => id === Number(getId));
-
-  res.status(200).json(filterById);
 };
 
 export { get, post, put, getById, remove };
