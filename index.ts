@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import handleLogger from "./src/middleware/handlerLogger";
 import carRouter from "./src/routes/carRouter";
+import userRouter from "./src/routes/userRouter";
 import knex from "knex";
 import { Model } from "objection";
 
@@ -26,6 +27,7 @@ app.use(express.urlencoded());
 app.use(handleLogger);
 
 app.use("/v1/cars", carRouter);
+app.use("/v1/users", userRouter);
 
 app.listen(PORT, () => {
   console.log(`is listening to port ${PORT}`);
