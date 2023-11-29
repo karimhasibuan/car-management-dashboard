@@ -10,9 +10,8 @@ interface UserRegistration {
 }
 
 const register = async (req: Request, res: Response) => {
+  const reqBody: any = req.body;
   try {
-    const reqBody: any = req.body;
-
     if (!reqBody.email) {
       return res.status(400).json({ message: "Email is required" });
     }
