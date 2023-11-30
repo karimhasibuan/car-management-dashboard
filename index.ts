@@ -4,6 +4,8 @@ import carRouter from "./src/routes/carRouter";
 import userRouter from "./src/routes/userRouter";
 import knex from "knex";
 import { Model } from "objection";
+import session from "express-session";
+import secretKey from "./src/middleware/secretKeyToken";
 
 const app: Express = express();
 const PORT = 3000;
@@ -16,6 +18,14 @@ const knexInstance = knex({
     password: "12345",
   },
 });
+
+app.use(
+  session({
+    secret: secretKey,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 Model.knex(knexInstance);
 
