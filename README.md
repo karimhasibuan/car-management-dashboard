@@ -8,6 +8,8 @@ Car Management Dashboard is a API for Website.
 
 ## API
 
+http://localhost:3000/api-docs/ => For Open API UI
+
 ### Cars API Endpoint
 
 - [GET] http://localhost:3000/v1/cars => Show list cars data
