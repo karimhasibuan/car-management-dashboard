@@ -24,7 +24,9 @@ interface CarList {
 const get = async (req: Request, res: Response) => {
   try {
     const { brand = "" } = req.query || {};
-    const cars = brand ? await CarsData.query().where("brand", "like", `%${brand}%`) : await CarsData.query();
+    const cars = brand
+      ? await CarsData.query().where("brand", "like", `%${brand}%`).whereNull("deleted_by")
+      : await CarsData.query().whereNull("deleted_by");
     res.status(200).json({ cars });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
@@ -47,9 +49,14 @@ const post = async (req: Request, res: Response) => {
         return res.status(400).json({ message: err.message });
       }
 
+      const userId = (req.user as any)?.userId;
+      if (!userId) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
       const newObjCarWithId: CarList = {
         ...reqBody,
         img_path: result.url,
+        created_by: userId,
       };
 
       const newCar = await CarsData.query().insert(newObjCarWithId);
@@ -65,8 +72,14 @@ const put = async (req: Request, res: Response) => {
     const { id } = req.params;
     const reqBody: any = req.body;
 
+    const existingCar = await CarsData.query().findById(id).whereNull("deleted_by");
+    if (!existingCar) {
+      return res.status(404).json({ message: "Car not found" });
+    }
+
     if (!req.file) {
-      const updatedCar = await CarsData.query().patchAndFetchById(id, reqBody);
+      const userId = (req.user as any)?.userId;
+      const updatedCar = await CarsData.query().patchAndFetchById(id, { ...reqBody, updated_by: userId });
       return res.status(200).json(updatedCar);
     }
 
@@ -78,9 +91,11 @@ const put = async (req: Request, res: Response) => {
         return res.status(400).json({ message: err.message });
       }
 
+      const userId = (req.user as any)?.userId;
       const newObjCarWithId: CarList = {
         ...reqBody,
         img_path: result.url,
+        updated_by: userId,
       };
 
       const updatedCar = await CarsData.query().patchAndFetchById(id, newObjCarWithId);
@@ -94,7 +109,15 @@ const put = async (req: Request, res: Response) => {
 const remove = async (req: Request, res: Response) => {
   try {
     const carId = req.params.id;
-    const deletedCar = await CarsData.query().deleteById(carId);
+
+    const existingCar = await CarsData.query().findById(carId).whereNull("deleted_by");
+    if (!existingCar) {
+      return res.status(404).json({ message: "Car not found" });
+    }
+    const userId = (req.user as any)?.userId;
+    const deletedCar = await CarsData.query().patchAndFetchById(carId, {
+      deleted_by: userId,
+    });
     if (deletedCar) {
       const cars = await CarsData.query();
       return res.status(200).json({ message: "Car successfully deleted", cars });
@@ -109,6 +132,11 @@ const remove = async (req: Request, res: Response) => {
 const getById = async (req: Request, res: Response) => {
   try {
     const carId = req.params.id;
+
+    const existingCar = await CarsData.query().findById(carId).whereNull("deleted_by");
+    if (!existingCar) {
+      return res.status(404).json({ message: "Car not found" });
+    }
 
     const car = await CarsData.query().findById(carId);
 
