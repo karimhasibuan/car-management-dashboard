@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "swagger-spec": "swagger-jsdoc -d src/swagger-spec.yaml -o swagger.json",
     "start": "nodemon ./index.ts"
   },
   "author": "",
@@ -24,6 +25,7 @@
     "passport-local": "^1.0.0",
     "pg": "^8.11.3",
     "sqlite3": "^5.1.6",
+    "swagger-ui-express": "^5.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "uuid": "^9.0.1"
@@ -38,8 +40,11 @@
     "@types/passport": "^1.0.16",
     "@types/passport-jwt": "^3.0.13",
     "@types/pg": "^8.10.9",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
     "@types/uuid": "^9.0.7",
     "nodemon": "^3.0.1",
+    "swagger-jsdoc": "^6.2.8",
     "ts-node-dev": "^2.0.0"
   }
 }
