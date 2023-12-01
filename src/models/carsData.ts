@@ -8,6 +8,9 @@ export class CarsData extends Model {
   year!: number;
   rent_price!: number;
   img_path!: string;
+  created_by!: number | null;
+  updated_by!: number | null;
+  deleted_by!: number | null;
 
   static get tableName() {
     return "cars";
