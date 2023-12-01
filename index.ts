@@ -5,6 +5,8 @@ import userRouter from "./src/routes/userRouter";
 import knex from "knex";
 import { Model } from "objection";
 import session from "express-session";
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 import secretKey from "./src/middleware/secretKeyToken";
 
 const app: Express = express();
@@ -18,6 +20,22 @@ const knexInstance = knex({
     password: "12345",
   },
 });
+
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Car Management API",
+      version: "1.0.0",
+      description: "API documentation for the Car Management System",
+    },
+  },
+  apis: ["./src/swagger-spec.yaml"],
+};
+
+const specs = swaggerJsdoc(swaggerOptions);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use(
   session({
