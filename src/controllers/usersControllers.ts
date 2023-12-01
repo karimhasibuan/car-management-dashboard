@@ -12,6 +12,7 @@ interface UserRegistration {
   role: string;
 }
 
+// For new user register
 const register = async (req: Request, res: Response) => {
   const reqBody: any = req.body;
   try {
@@ -40,6 +41,7 @@ const register = async (req: Request, res: Response) => {
   }
 };
 
+// For user login
 const login = async (req: Request, res: Response) => {
   const reqBody: any = req.body;
   try {
@@ -61,6 +63,7 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
+// For get current user session login.
 const getCurrentUser = async (req: Request, res: Response) => {
   try {
     const userId = (req.user as any)?.userId;
@@ -75,6 +78,7 @@ const getCurrentUser = async (req: Request, res: Response) => {
   }
 };
 
+// For Superadmin login
 const loginAdmin = async (req: Request, res: Response) => {
   const reqBody: any = req.body;
   try {
@@ -100,4 +104,21 @@ const loginAdmin = async (req: Request, res: Response) => {
   }
 };
 
-export { register, login, loginAdmin, getCurrentUser };
+// For change user role to admin by superadmin
+const changeUserRole = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params;
+
+    const currentUser = await UsersData.query().findById((req.user as any)?.userId);
+    if (!currentUser || currentUser.role !== "superadmin") {
+      return res.status(403).json({ message: "Opss!! You're not admin" });
+    }
+
+    const updatedUser = await UsersData.query().patchAndFetchById(userId, { role: "admin" });
+    res.status(200).json({ message: "User role updated", user: updatedUser });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { register, login, loginAdmin, getCurrentUser, changeUserRole };
