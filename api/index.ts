@@ -1,16 +1,18 @@
 import express, { Express } from "express";
-import handleLogger from "./src/middleware/handlerLogger";
-import carRouter from "./src/routes/carRouter";
-import userRouter from "./src/routes/userRouter";
 import knex from "knex";
 import { Model } from "objection";
 import session from "express-session";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import cors from "cors";
 import secretKey from "./src/middleware/secretKeyToken";
+import handleLogger from "./src/middleware/handlerLogger";
+import carRouter from "./src/routes/carRouter";
+import userRouter from "./src/routes/userRouter";
+import landingPageRouter from "./src/routes/landingPageRouter";
 
 const app: Express = express();
-const PORT = 3000;
+const PORT = 3001;
 
 const knexInstance = knex({
   client: "pg",
@@ -36,7 +38,7 @@ const swaggerOptions = {
 const specs = swaggerJsdoc(swaggerOptions);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
-
+app.use(cors());
 app.use(
   session({
     secret: secretKey,
@@ -54,6 +56,9 @@ app.use(express.static("public"));
 app.use(express.urlencoded());
 app.use(handleLogger);
 
+app.get("/favicon.ico", (req, res) => res.status(204));
+
+app.use("/", landingPageRouter);
 app.use("/v1/cars", carRouter);
 app.use("/v1/users", userRouter);
 
