@@ -49,12 +49,12 @@ password: superadmin19
 
 ## Progress Info
 
-| Feature                                        | Progres |
-| ---------------------------------------------- | ------- |
-| Connect Root Endpoint from Backend to Frontend | 100%    |
-| Modify Landing Page                            | 10%     |
-| ...                                            | ...     |
-| ...                                            | ...     |
+| Feature                                        | Progress |
+| ---------------------------------------------- | -------- |
+| Connect Root Endpoint from Backend to Frontend | 100%     |
+| Modify Landing Page                            | 20%      |
+| ...                                            | ...      |
+| ...                                            | ...      |
 
 _The features listed above are only features that have been completed or are in progress. Features that have not been developed will not be shown._
 
