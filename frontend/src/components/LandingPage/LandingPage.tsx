@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavbarComponent from "../Navbar/Navbar";
+import JumbotronComponent from "../Jumbotron/Jumbotron";
 
 const LandingPage: React.FC = () => {
   const [message, setMessage] = useState<string>("");
@@ -19,6 +20,7 @@ const LandingPage: React.FC = () => {
   return (
     <div>
       <NavbarComponent />
+      <JumbotronComponent />
     </div>
   );
 };
