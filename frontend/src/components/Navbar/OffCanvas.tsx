@@ -5,7 +5,13 @@ import styles from "./styles";
 
 const OffCanvasComponent: React.FC<{ show: boolean; onHide: () => void }> = ({ show, onHide }) => {
   return (
-    <Offcanvas show={show} onHide={onHide} placement="end">
+    <Offcanvas
+      show={show}
+      onHide={onHide}
+      placement="end"
+      style={{
+        width: "50%",
+      }}>
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>BCR</Offcanvas.Title>
       </Offcanvas.Header>
