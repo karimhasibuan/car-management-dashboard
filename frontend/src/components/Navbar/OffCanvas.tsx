@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Nav from "react-bootstrap/Nav";
-import styles from "./styles";
+import styles from "../Style/styles";
 
 const OffCanvasComponent: React.FC<{ show: boolean; onHide: () => void }> = ({ show, onHide }) => {
   return (

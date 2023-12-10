@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./styles";
+import styles from "../Style/styles";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import OffCanvasComponent from "./OffCanvas";
 import MenuIcon from "@mui/icons-material/Menu";
