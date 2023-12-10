@@ -2,9 +2,9 @@
 
 Car Management Dashboard is a API for Website.
 
-## ERD for Cars Data
+## URL Info
 
-![dbdiagram](./erd.png)
+- http://localhost:3000/ => Show Landing Page
 
 ## API
 
@@ -47,13 +47,25 @@ password: superadmin19
 
 ![db-priview](./db-preview.png)
 
+## Progress Info
+
+| Feature                                        | Progres |
+| ---------------------------------------------- | ------- |
+| Connect Root Endpoint from Backend to Frontend | 100%    |
+| Modify Landing Page                            | 10%     |
+| ...                                            | ...     |
+| ...                                            | ...     |
+
+_The features listed above are only features that have been completed or are in progress. Features that have not been developed will not be shown._
+
 ## How to install project
 
 - Download or clone the repository.
-- install dependencies in frontend and backend with "npm install".
+- install dependencies in frontend and api folders with "npm install".
 - configure your postgres user in `knexfile.ts` and `index.ts`.
 - configure your cloudinary key in `src/controllers/carsControllers.ts`.
 - run `npm run migrate` in terminal this project.
 - run `npx knex seed:run` in terminal this project for get seeding data in database.
-- run `npm run start` in terminal this project for run project.
-- access the endpoint by Postman.
+- run `npm run start` in terminal on frontend and api folders for run project.
+- access the url in browser.
+- access the endpoint by Postman (if want to testing the api).
