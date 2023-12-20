@@ -14,6 +14,7 @@ const styles = {
     padding: 8px 12px;
     border-radius: 2px;
     background-color: #5cb85f;
+    border: unset;
   `,
 };
 
