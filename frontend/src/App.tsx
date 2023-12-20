@@ -1,6 +1,6 @@
 import React from "react";
-import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
 import LandingPage from "./components/LandingPage/LandingPage";
 
 const App: React.FC = () => {
