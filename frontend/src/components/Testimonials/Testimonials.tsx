@@ -8,7 +8,7 @@ import styles from "./styles";
 const Testimonial: React.FC = () => {
   return (
     <Container>
-      <div className={`${styles.testimonial}`}>
+      <div id="testimonial" className={`${styles.testimonial}`}>
         <UpperTestimonial />
         <LowerTestimonial />
         <NavigationTestimonial />

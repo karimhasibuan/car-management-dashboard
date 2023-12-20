@@ -7,7 +7,7 @@ import styles from "./styles";
 const WhyUsComponent: React.FC = () => {
   return (
     <Container>
-      <div className={`${styles.whyUs}`}>
+      <div id="why-us" className={`${styles.whyUs}`}>
         <WhyUsUpper />
         <WhyUsRow />
       </div>
