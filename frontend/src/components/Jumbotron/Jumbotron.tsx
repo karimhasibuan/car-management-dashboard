@@ -16,14 +16,12 @@ const JumbotronComponent: React.FC = () => {
               Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan
               harga terjangkau. Selalu siap melayani kebutuhanmu untuk sewa mobil selama 24 jam.
             </p>
-            <a href="#" className={`${styles.btnGreen} text-white text-decoration-none p-2 `}>
-              Mulai Sewa Mobil
-            </a>
+            <button className={`${styles.btnGreen} text-white `}>Mulai Sewa Mobil</button>
           </div>
         </Col>
         <Col sm={6}>
           <img
-            src="https://i.postimg.cc/FRsd03mt/img-car.png"
+            src="https://i.ibb.co/zmDXnmH/img-car.png"
             alt="img-car"
             className={`${stylesJumbotron.rightHeaderSectionImg}`}
           />
