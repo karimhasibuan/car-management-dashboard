@@ -5,6 +5,7 @@ import JumbotronComponent from "../Jumbotron/Jumbotron";
 import OurServicesComponent from "../OurServices/OurServices";
 import WhyUsComponent from "../WhyUs/WhyUs";
 import TestimonialsComponent from "../Testimonials/Testimonials";
+import CTABannerComponent from "../CTABanner/CTABanner";
 
 const LandingPage: React.FC = () => {
   const [message, setMessage] = useState<string>("");
@@ -27,6 +28,7 @@ const LandingPage: React.FC = () => {
       <OurServicesComponent />
       <WhyUsComponent />
       <TestimonialsComponent />
+      <CTABannerComponent />
     </div>
   );
 };

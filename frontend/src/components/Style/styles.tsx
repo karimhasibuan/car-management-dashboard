@@ -4,6 +4,9 @@ const styles = {
   greyBg: css`
     background-color: #f8f9fa;
   `,
+  blueDarkBg: css`
+    background-color: #0d28a6;
+  `,
   logo: css`
     background-color: #0d28a6;
     width: 100px;
