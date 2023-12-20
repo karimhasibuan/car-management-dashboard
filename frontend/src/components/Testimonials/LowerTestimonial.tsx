@@ -7,10 +7,11 @@ import styles from "./styles";
 const LowerTestimonial: React.FC = () => {
   const glideOptions = {
     type: "carousel",
-    slidesToShow: 2,
+    slidesToShow: undefined,
     draggable: true,
     rewind: true,
     itemWidth: 619,
+    exactWidth: true,
   };
 
   return (

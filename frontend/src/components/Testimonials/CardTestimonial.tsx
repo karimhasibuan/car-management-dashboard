@@ -21,7 +21,7 @@ const CardTestimonial: React.FC<CardTestimonialProps> = ({
   return (
     <div className={`${styles.cardTestimonial}`}>
       <div className={`${styles.leftCardTestimonial}`}>
-        <img src={leftImageSrc} alt={name} />
+        <img className={`${styles.leftCardTestimonialImg}`} src={leftImageSrc} alt={name} />
       </div>
       <div className={`${styles.rightCardTestimonial}`}>
         <div>
@@ -30,7 +30,7 @@ const CardTestimonial: React.FC<CardTestimonialProps> = ({
           ))}
         </div>
         <p className={`${styles.descCardTestimonial}`}>{description}</p>
-        <p className={`fw-bold`}>
+        <p className={`fw-bold mb-0`}>
           {name} {age}, {location}
         </p>
       </div>

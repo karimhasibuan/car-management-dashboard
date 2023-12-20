@@ -19,16 +19,19 @@ const styles = {
     box-shadow: 0px 0px 4px 0px #00000026;
   `,
   leftCardTestimonial: css`
-    margin: 0px 46px;
+    margin: 0px 23px;
     display: flex;
     align-items: center;
   `,
+  leftCardTestimonialImg: css`
+    width: 200px;
+  `,
   rightCardTestimonial: css`
     margin-right: 32px;
-    width: 415px;
+    width: 100%;
   `,
   descCardTestimonial: css`
-    width: 100%;
+    width: 415px;
   `,
   arrow: css`
     margin-top: 2rem;
