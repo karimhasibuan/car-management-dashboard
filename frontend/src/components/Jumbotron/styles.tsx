@@ -17,9 +17,6 @@ const stylesJumbotron = {
     padding-left: 102px;
     padding-right: 32px;
   `,
-  leftHeaderSectionContentLink: css`
-    border-radius: 2px;
-  `,
   rightHeaderSectionImg: css`
     width: 100%;
   `,

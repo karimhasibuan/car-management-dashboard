@@ -5,7 +5,7 @@ import stylesJumbotron from "./styles";
 
 const JumbotronComponent: React.FC = () => {
   return (
-    <div className={`${styles.greyBg} text-white`}>
+    <div className={`container-fluid ${styles.greyBg}`}>
       <Row className={`${stylesJumbotron.headerSection}`}>
         <Col sm={6} className={`${stylesJumbotron.leftHeaderSection}`}>
           <div className={`${stylesJumbotron.leftHeaderSectionContent}`}>
@@ -21,7 +21,7 @@ const JumbotronComponent: React.FC = () => {
         </Col>
         <Col sm={6}>
           <img
-            src="https://i.ibb.co/zmDXnmH/img-car.png"
+            src="https://i.ibb.co/jwNsVCm/img-car.png"
             alt="img-car"
             className={`${stylesJumbotron.rightHeaderSectionImg}`}
           />
