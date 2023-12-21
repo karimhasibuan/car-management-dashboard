@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Accordion, AccordionItem, Card, Col } from "react-bootstrap";
+import { Container, Accordion, Card, Col } from "react-bootstrap";
 import styles from "./styles";
 
 interface FAQItem {
