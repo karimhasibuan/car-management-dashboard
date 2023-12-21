@@ -17,21 +17,47 @@ const styles = {
     border: 1px solid #d0d0d0;
     background-color: #f1f3ff;
     box-shadow: 0px 0px 4px 0px #00000026;
+
+    @media (max-width: 768px) {
+      width: 214px;
+      display: block;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
   `,
   leftCardTestimonial: css`
     margin: 0px 23px;
     display: flex;
     align-items: center;
+    @media (max-width: 768px) {
+      margin: 0px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
   `,
   leftCardTestimonialImg: css`
     width: 200px;
+    @media (max-width: 768px) {
+      width: 100px;
+    }
   `,
   rightCardTestimonial: css`
     margin-right: 32px;
     width: 100%;
+
+    @media (max-width: 768px) {
+      display: block;
+      justify-content: center;
+      margin-right: 0px;
+    }
   `,
   descCardTestimonial: css`
     width: 415px;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   `,
   arrow: css`
     margin-top: 2rem;
