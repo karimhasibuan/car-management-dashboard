@@ -12,6 +12,9 @@ const styles = {
     padding: 24px;
     border-radius: 8px;
     border: 1px solid #d0d0d0;
+    @media (max-width: 768px) {
+      margin-bottom: 16px;
+    }
   `,
   whyUsCardImg: css`
     padding-bottom: 16px;
