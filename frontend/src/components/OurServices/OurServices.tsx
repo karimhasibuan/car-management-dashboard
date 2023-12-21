@@ -7,12 +7,12 @@ const OurService: React.FC = () => {
     <Container id="our-services" className={`container ${styles.ourServices}`}>
       <Row className="mx-auto">
         <Col sm={6}>
-          <div className="left-services-section">
+          <div className={`${styles.leftServiceSection}`}>
             <img src="https://i.ibb.co/dJx6YvX/img-service.png" alt="" />
           </div>
         </Col>
         <Col sm={6}>
-          <div className="right-services-section">
+          <div className={`${styles.rightServiceSection}`}>
             <h4 className="fw-bold mb-4">Best Car Rental for any kind of trip in (Lokasimu)!</h4>
             <div className="content-list-services">
               <p>
