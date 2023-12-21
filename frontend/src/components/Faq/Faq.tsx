@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Accordion, Card, Col } from "react-bootstrap";
+import { Container, Accordion, Card, Col, Row } from "react-bootstrap";
 import styles from "./styles";
 
 interface FAQItem {
@@ -33,23 +33,25 @@ const FAQSection: React.FC = () => {
 
   return (
     <Container>
-      <div className={`${styles.faqSection}`}>
-        <Col sm={6}>
-          <h3>Frequently Asked Question</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-        </Col>
-        <Col sm={6}>
-          <Accordion defaultActiveKey={["0"]}>
-            {faqData.map((item, index) => (
-              <Card key={index} className={`${styles.itemFaqSection}`}>
-                <Accordion.Item eventKey={index.toString()}>
-                  <Accordion.Header>{item.question}</Accordion.Header>
-                  <Accordion.Body>{item.answer}</Accordion.Body>
-                </Accordion.Item>
-              </Card>
-            ))}
-          </Accordion>
-        </Col>
+      <div id="faq" className={`${styles.faqSection}`}>
+        <Row>
+          <Col sm={6}>
+            <h3>Frequently Asked Question</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+          </Col>
+          <Col sm={6}>
+            <Accordion>
+              {faqData.map((item, index) => (
+                <Card key={index} className={`${styles.itemFaqSection}`}>
+                  <Accordion.Item eventKey={index.toString()}>
+                    <Accordion.Header>{item.question}</Accordion.Header>
+                    <Accordion.Body>{item.answer}</Accordion.Body>
+                  </Accordion.Item>
+                </Card>
+              ))}
+            </Accordion>
+          </Col>
+        </Row>
       </div>
     </Container>
   );
