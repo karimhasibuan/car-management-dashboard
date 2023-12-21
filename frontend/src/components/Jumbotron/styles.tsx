@@ -16,9 +16,16 @@ const stylesJumbotron = {
   leftHeaderSectionContent: css`
     padding-left: 102px;
     padding-right: 32px;
+    @media (max-width: 768px) {
+      padding-left: 0px;
+      margin-left: 0px;
+    }
   `,
   rightHeaderSectionImg: css`
     width: 100%;
+    @media (max-width: 768px) {
+      margin-top: 24px;
+    }
   `,
 };
 

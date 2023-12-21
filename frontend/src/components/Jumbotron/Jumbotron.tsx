@@ -1,11 +1,11 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import styles from "../Style/styles";
 import stylesJumbotron from "./styles";
 
 const JumbotronComponent: React.FC = () => {
   return (
-    <div className={`container-fluid ${styles.greyBg}`}>
+    <Container fluid className={`${styles.greyBg}`}>
       <Row className={`${stylesJumbotron.headerSection}`}>
         <Col sm={6} className={`${stylesJumbotron.leftHeaderSection}`}>
           <div className={`${stylesJumbotron.leftHeaderSectionContent}`}>
@@ -27,7 +27,7 @@ const JumbotronComponent: React.FC = () => {
           />
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 };
 
