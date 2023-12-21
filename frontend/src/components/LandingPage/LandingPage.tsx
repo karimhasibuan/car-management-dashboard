@@ -6,6 +6,7 @@ import OurServicesComponent from "../OurServices/OurServices";
 import WhyUsComponent from "../WhyUs/WhyUs";
 import TestimonialsComponent from "../Testimonials/Testimonials";
 import CTABannerComponent from "../CTABanner/CTABanner";
+import FaqComponent from "../Faq/Faq";
 
 const LandingPage: React.FC = () => {
   const [message, setMessage] = useState<string>("");
@@ -29,6 +30,7 @@ const LandingPage: React.FC = () => {
       <WhyUsComponent />
       <TestimonialsComponent />
       <CTABannerComponent />
+      <FaqComponent />
     </div>
   );
 };
