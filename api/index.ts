@@ -10,6 +10,7 @@ import handleLogger from "./src/middleware/handlerLogger";
 import carRouter from "./src/routes/carRouter";
 import userRouter from "./src/routes/userRouter";
 import landingPageRouter from "./src/routes/landingPageRouter";
+import bodyParser from "body-parser";
 
 const app: Express = express();
 const PORT = 3001;
@@ -53,7 +54,9 @@ app.set("view engine", "ejs");
 
 app.set("views", "./src/views");
 app.use(express.static("public"));
-app.use(express.urlencoded());
+// app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(handleLogger);
 
 app.get("/favicon.ico", (req, res) => res.status(204));
