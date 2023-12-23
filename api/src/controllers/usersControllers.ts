@@ -12,6 +12,11 @@ interface UserRegistration {
   role: string;
 }
 
+interface LoginData {
+  email: string;
+  password: string;
+}
+
 // For new user register
 const register = async (req: Request, res: Response) => {
   const reqBody: any = req.body;
@@ -80,14 +85,15 @@ const getCurrentUser = async (req: Request, res: Response) => {
 
 // For Superadmin login
 const loginAdmin = async (req: Request, res: Response) => {
-  const reqBody: any = req.body;
+  const reqBody: LoginData = req.body;
   try {
+    console.log("Request Body:", reqBody);
     const user = await UsersData.query().findOne({ email: reqBody.email });
     if (!user) {
       return res.status(400).json({ message: "Email not registered" });
     }
 
-    if (user.role !== "superadmin") {
+    if (user.role !== "superadmin" && user.role !== "admin") {
       return res.status(401).json({ message: "Opss!! You're not admin" });
     }
 
@@ -96,9 +102,9 @@ const loginAdmin = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    const token = jwt.sign({ userId: user.id }, secretKey);
+    const token = jwt.sign({ userId: user.id, email: user.email }, secretKey);
 
-    res.status(200).json({ message: "Login Successful", token });
+    res.status(200).json({ token });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
