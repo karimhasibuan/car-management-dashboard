@@ -5,6 +5,7 @@ const API = "http://localhost:3001/v1/users/profile";
 
 interface UserProfile {
   user: Array<{
+    id: number;
     name: string;
     email: string;
   }>;
@@ -14,7 +15,7 @@ const Dashboard: React.FC = () => {
   const [userProfile, setUserProfile] = useState<UserProfile>({ user: [] });
 
   useEffect(() => {
-    if (!userProfile.user.length) {
+    if (!userProfile.user?.length) {
       fetch(API, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -33,11 +34,12 @@ const Dashboard: React.FC = () => {
 
   return (
     <div>
+      {!userProfile}
       <h1>Dashboard</h1>
       {userProfile.user?.length > 0 &&
-        userProfile.user?.map(({ name, email }) => {
+        userProfile.user?.map(({ id, name, email }) => {
           return (
-            <div>
+            <div key={id}>
               <p>Selamat datang di dashboard, {name}!</p>
               <p>Email: {email}</p>
             </div>
