@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from 'react';
 
-const API = 'http://localhost:3001/v1/users/profile';
 
-interface UserProfile {
-  user: Array<{
+
+interface UserData {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	user: any;
     id: number;
     name: string;
     email: string;
-  }>;
 }
 
 const Dashboard: React.FC = () => {
-	const [userProfile, setUserProfile] = useState<UserProfile>({ user: [] });
+	const [userData, setUserData] = useState<UserData | null>(null);
 
 	useEffect(() => {
-		if (!userProfile.user?.length) {
+		const API = 'http://localhost:3001/v1/users/profile';
+		const token = localStorage.getItem('token');
+
+		if (token) {
 			fetch(API, {
+				method: 'GET',
 				headers: {
-					Authorization: `Bearer ${localStorage.getItem('token')}`,
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}`,
 				},
 			})
 				.then((response) => response.json())
-				.then((data) => setUserProfile(data));
-			console.log(userProfile);
+				.then((data) => setUserData(data));
+		} else {
+			window.location.href = '/login';
 		}
-	}, [userProfile]);
+	}, []);
 
 	const handleLogout = () => {
 		localStorage.removeItem('token');
@@ -33,17 +39,15 @@ const Dashboard: React.FC = () => {
 
 	return (
 		<div>
-			{!userProfile}
 			<h1>Dashboard</h1>
-			{userProfile.user?.length > 0 &&
-        userProfile.user?.map(({ id, name, email }) => {
-        	return (
-        		<div key={id}>
-        			<p>Selamat datang di dashboard, {name}!</p>
-        			<p>Email: {email}</p>
-        		</div>
-        	);
-        })}
+			{userData ? (
+				<div>
+					<p>Selamat datang di dashboard, {userData.user?.name}!</p>
+					<p>Email: {userData.user?.email}</p>
+				</div>
+			) : (
+				<p>Loading...</p>
+			)}
 
 			<button onClick={handleLogout}>LOGOUT</button>
 		</div>
