@@ -50,7 +50,8 @@ const Login: React.FC = () => {
 		}
 	};
 
-	function Copyright(props) {
+	/* eslint-disable  @typescript-eslint/no-explicit-any */
+	function Copyright(props: any) {
 		return (
 			<Typography variant="body2" color="text.secondary" align="center" {...props}>
 				{'Copyright © '}
