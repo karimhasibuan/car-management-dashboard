@@ -1,19 +1,19 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
 const stylesJumbotron = {
-  headerSection: css`
+	headerSection: css`
     padding-top: 37px;
   `,
-  leftHeaderSection: css`
+	leftHeaderSection: css`
     display: flex;
     justify-content: center;
     align-items: center;
   `,
-  leftHeaderSectionH3: css`
+	leftHeaderSectionH3: css`
     font-size: 36px;
     line-height: 54px;
   `,
-  leftHeaderSectionContent: css`
+	leftHeaderSectionContent: css`
     padding-left: 102px;
     padding-right: 32px;
     @media (max-width: 768px) {
@@ -21,7 +21,7 @@ const stylesJumbotron = {
       margin-left: 0px;
     }
   `,
-  rightHeaderSectionImg: css`
+	rightHeaderSectionImg: css`
     width: 100%;
     @media (max-width: 768px) {
       margin-top: 24px;

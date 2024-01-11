@@ -1,7 +1,7 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
 const styles = {
-  ctabannerSection: css`
+	ctabannerSection: css`
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -10,7 +10,7 @@ const styles = {
     border-radius: 13px;
     margin: 100px 0;
   `,
-  ctabannerH3: css`
+	ctabannerH3: css`
     text-align: center;
     font-size: 36px;
     font-weight: 700;
@@ -18,7 +18,7 @@ const styles = {
     padding-bottom: 16px;
     color: #ffffff;
   `,
-  ctabannerP: css`
+	ctabannerP: css`
     width: 40%;
     text-align: center;
     font-size: 14px;

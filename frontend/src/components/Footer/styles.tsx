@@ -1,7 +1,7 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
 const styles = {
-  footerSection: css`
+	footerSection: css`
     margin-bottom: 100px;
     display: flex;
     justify-content: space-between;
@@ -10,7 +10,7 @@ const styles = {
       display: block;
     }
   `,
-  addressFooterSection: css`
+	addressFooterSection: css`
     width: 268px;
 
     @media (max-width: 768px) {
@@ -18,7 +18,7 @@ const styles = {
       margin-bottom: 20px;
     }
   `,
-  navigationFooterSection: css`
+	navigationFooterSection: css`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -32,7 +32,7 @@ const styles = {
       margin-top: 20px;
     }
   `,
-  sosmedFooterSection: css`
+	sosmedFooterSection: css`
     display: flex;
     flex-direction: column;
 
@@ -40,7 +40,7 @@ const styles = {
       margin-top: 20px;
     }
   `,
-  iconSosmedFooterSection: css`
+	iconSosmedFooterSection: css`
     display: flex;
     justify-content: space-between;
     width: 268px;
@@ -49,13 +49,13 @@ const styles = {
       margin-right: 1rem;
     }
   `,
-  logoFooter: css`
+	logoFooter: css`
     display: block;
     background-color: #0d28a6;
     width: 100px;
     height: 34px;
   `,
-  copyrightFooterSection: css`
+	copyrightFooterSection: css`
     display: flex;
     flex-direction: column;
 

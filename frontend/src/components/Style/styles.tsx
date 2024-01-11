@@ -1,18 +1,18 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
 const styles = {
-  greyBg: css`
+	greyBg: css`
     background-color: #f8f9fa;
   `,
-  blueDarkBg: css`
+	blueDarkBg: css`
     background-color: #0d28a6;
   `,
-  logo: css`
+	logo: css`
     background-color: #0d28a6;
     width: 100px;
     height: 34px;
   `,
-  btnGreen: css`
+	btnGreen: css`
     display: inline-block;
     padding: 8px 12px;
     border-radius: 2px;

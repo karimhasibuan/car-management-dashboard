@@ -1,13 +1,13 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
 const styles = {
-  whyUs: css`
+	whyUs: css`
     margin: 100px auto;
   `,
-  whyUsUpper: css`
+	whyUsUpper: css`
     margin-bottom: 40px;
   `,
-  whyUsCard: css`
+	whyUsCard: css`
     margin-right: 8px;
     padding: 24px;
     border-radius: 8px;
@@ -16,16 +16,16 @@ const styles = {
       margin-bottom: 16px;
     }
   `,
-  whyUsCardImg: css`
+	whyUsCardImg: css`
     padding-bottom: 16px;
   `,
-  whyUsCardH5: css`
+	whyUsCardH5: css`
     font-size: 16px;
     padding-bottom: 16px;
     margin-bottom: 0;
     font-weight: bold;
   `,
-  whyUsCardP: css`
+	whyUsCardP: css`
     font-size: 14px;
     margin-bottom: 0;
   `,

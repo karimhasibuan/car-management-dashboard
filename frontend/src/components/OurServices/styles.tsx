@@ -1,7 +1,7 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
 const stylesOurServices = {
-  ourServices: css`
+	ourServices: css`
     align-items: center;
     padding-top: 100px;
     width: 1027px;
@@ -12,7 +12,7 @@ const stylesOurServices = {
       padding-right: 0px;
     }
   `,
-  leftServiceSection: css`
+	leftServiceSection: css`
     @media (max-width: 768px) {
       padding-left: 0px;
       padding-right: 0px;
@@ -22,20 +22,20 @@ const stylesOurServices = {
       }
     }
   `,
-  rightServiceSection: css`
+	rightServiceSection: css`
     margin-top: 24px;
     p {
       text-align: justify;
     }
     }
   `,
-  pointServices: css`
+	pointServices: css`
     display: flex;
     align-items: center;
     align-content: center;
     margin-bottom: 18px;
   `,
-  pointServicesP: css`
+	pointServicesP: css`
     margin-left: 16px;
     margin-bottom: 0px;
   `,

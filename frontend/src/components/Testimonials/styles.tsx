@@ -1,14 +1,14 @@
-import { css } from "@emotion/css";
+import { css } from '@emotion/css';
 
 const styles = {
-  testimonial: css`
+	testimonial: css`
     margin: 100px auto;
   `,
-  lowerTestimonial: css`
+	lowerTestimonial: css`
     margin-top: 40px;
     margin-bottom: 24px;
   `,
-  cardTestimonial: css`
+	cardTestimonial: css`
     display: flex;
     width: 619px;
     margin-right: 32px;
@@ -26,7 +26,7 @@ const styles = {
       text-align: center;
     }
   `,
-  leftCardTestimonial: css`
+	leftCardTestimonial: css`
     margin: 0px 23px;
     display: flex;
     align-items: center;
@@ -37,13 +37,13 @@ const styles = {
       justify-content: center;
     }
   `,
-  leftCardTestimonialImg: css`
+	leftCardTestimonialImg: css`
     width: 200px;
     @media (max-width: 768px) {
       width: 100px;
     }
   `,
-  rightCardTestimonial: css`
+	rightCardTestimonial: css`
     margin-right: 32px;
     width: 100%;
 
@@ -53,24 +53,24 @@ const styles = {
       margin-right: 0px;
     }
   `,
-  descCardTestimonial: css`
+	descCardTestimonial: css`
     width: 415px;
     @media (max-width: 768px) {
       width: 100%;
     }
   `,
-  arrow: css`
+	arrow: css`
     margin-top: 2rem;
     width: 100%;
     display: flex;
     justify-content: center;
   `,
-  arrowWidth: css`
+	arrowWidth: css`
     width: 100px;
     display: flex;
     justify-content: space-around;
   `,
-  leftArrow: css`
+	leftArrow: css`
     color: #000000;
     background-color: #ffffff;
     border: 1px solid #c4c4c4;
@@ -83,7 +83,7 @@ const styles = {
       color: #ffffff;
     }
   `,
-  rightArrow: css`
+	rightArrow: css`
     color: #000000;
     background-color: #ffffff;
     border: 1px solid #c4c4c4;
